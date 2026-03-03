@@ -31,9 +31,8 @@ Your team's goal is to
 # ╔═╡ 599de35a-b0c8-4c03-8112-112b6fec25e7
 begin
 
-Ω_val = 1;
-	Ω_val2 = 2;
-init_theta = 0.25;
+Ω_val = .5;
+init_theta = 10;
 
 # Parameters
     h1 = 0.2
@@ -56,7 +55,7 @@ end
 begin
     u0 = [init_theta, 0.0]  # Initial angle and velocity
     tspan = (0.0, 10.0)         # Simulate for 10 seconds
-    p = Ω_val                 
+    p = Ω_val                  # Rotation speed from slider
     
     prob = ODEProblem(pendulum_system!, u0, tspan, p)
     sol = solve(prob, Tsit5(), reltol=1e-8, abstol=1e-8)
@@ -129,7 +128,7 @@ begin
             camera=(45, 30),
             legend=false
         )
-		
+
         # Vertical axis
         plot!([0,0], [0,0], [0,h1], color=:black, lw=4)
 
